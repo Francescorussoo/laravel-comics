@@ -1,50 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>@yield('page-title') | Laravel Start 1</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@yield('title')</title>
+</head>
+<body>
+    @include('partials.header')
 
-        {{-- Stili nell'head --}}
-        <link rel="stylesheet" href="css/style.css">
+    <div class="container">
+        @yield('content')
+    </div>
 
-        {{-- <!-- Includiamo gli assets con la direttiva @vite --> --}}
-        @vite('resources/js/app.js')
+    @include('partials.footer')
 
-        @yield('head-imports')
-    </head>
-    <body>
-
-        @include('partials.header')
-
-        <main>
-            <div class="container">
-
-                <div class="row">
-
-                    <div class="col">
-
-                        <div>
-                            <img class="gatto-img" src="{{ Vite::asset('resources/img/gatto.webp') }}" alt="Gatto">
-                        </div>
-
-                        <div class="gatto-bg">
-                            QUESTO DIV AVRA' COME SFONDO IL GATTO
-                        </div>
-
-                        @yield('main-content')
-
-                    </div>
-
-                </div>
-
-            </div>
-        </main>
-
-        @include('partials.footer')
-
-        {{-- JS da importare nel body --}}
-        @yield('body-imports')
-    </body>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+</body>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header, footer {
+            background-color: #222;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+        }
+    </style>
 </html>
